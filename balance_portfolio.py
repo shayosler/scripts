@@ -3,40 +3,39 @@
 # 90% stocks
 #   30% international (VXUS)
 #   60% domestic      (VTI,VOO)
-# 10% total           (BND,VCLT
-#Goals
+# 10% bonds           (BND,VCLT
 dom_stock_goal_pct = 0.6
 int_stock_goal_pct = 0.3
 bnd_goal_pct = 0.1
 
-#Get totals in brokerage account
+# Get totals in brokerage account
 brk_bnd = input('BND in brokerage: ')
 brk_vclt = input('VCLT in brokerage: ')
 brk_voo = input('VOO in brokerage: ')
 brk_vti = input('VTI in brokerage: ')
 brk_vxus = input('VXUS in brokerage: ')
 brk_cash = input('Cash in brokerage: ')
-#Get totals in Roth IRA
+# Get totals in Roth IRA
 roth_bnd = input('BND in Roth IRA: ')
-roth_vclt = input('VCLT in Roth IRA: ')
+roth_vclt = 0  # input('VCLT in Roth IRA: ')
 roth_voo = input('VOO in Roth IRA: ')
 roth_vti = input('VTI in Roth IRA: ')
 roth_vxus = input('VXUS in Roth IRA: ')
 roth_cash = input('Cash in Roth IRA: ')
 
-#Calculate totals
+# Calculate totals
 bnd_tot = brk_vclt + brk_bnd + roth_vclt + roth_bnd
 dom_stock_tot = brk_voo + brk_vti + roth_vti + roth_voo
 int_stock_tot = brk_vxus + roth_vxus
 cash_tot = brk_cash + roth_cash
 total_value = bnd_tot + dom_stock_tot + int_stock_tot + cash_tot
 
-#Calculate goal totals
+# Calculate goal totals
 dom_stock_goal = dom_stock_goal_pct * total_value
 int_stock_goal = int_stock_goal_pct * total_value
 bnd_goal = bnd_goal_pct * total_value
 
-#Difference between goal and current value
+# Difference between goal and current value
 dom_stock_diff = dom_stock_goal - dom_stock_tot
 int_stock_diff = int_stock_goal - int_stock_tot
 bnd_diff = bnd_goal - bnd_tot
