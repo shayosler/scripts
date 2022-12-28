@@ -3,8 +3,7 @@
 # 90% stocks
 #   30% international (VXUS)
 #   60% domestic      (VTI,VOO)
-# 10% total           (BND,VCLT
-# Goals
+# 10% bonds           (BND,VCLT
 dom_stock_goal_pct = 0.6
 int_stock_goal_pct = 0.3
 bnd_goal_pct = 0.1
@@ -18,7 +17,7 @@ brk_vxus = input('VXUS in brokerage: ')
 brk_cash = input('Cash in brokerage: ')
 # Get totals in Roth IRA
 roth_bnd = input('BND in Roth IRA: ')
-roth_vclt = input('VCLT in Roth IRA: ')
+roth_vclt = 0  # input('VCLT in Roth IRA: ')
 roth_voo = input('VOO in Roth IRA: ')
 roth_vti = input('VTI in Roth IRA: ')
 roth_vxus = input('VXUS in Roth IRA: ')
@@ -63,3 +62,4 @@ print('Target - current:')
 print('  Domestic stocks: $' + str(dom_stock_diff))
 print('  International stocks: $' + str(int_stock_diff))
 print('  Bonds: $' + str(bnd_diff))
+
