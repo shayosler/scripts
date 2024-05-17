@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Recursively upload the contents of test_dir to ftp.greenseakb.com/doc
+# --disable-epsv	Don't use EPSV, this sometimes causes problems/slowness. 
+# -n			Use credentials from the $HOME/.netrc file
+# --ftp-create-dirs	Create directories as needed
+find test_dir -type f -exec curl -n --disable-epsv --ftp-create-dirs -T {} ftp://ftp.greenseakb.com/doc/{} \;

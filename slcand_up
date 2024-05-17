@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#bring down interfaces
+sudo ip link set slcan0 down
+#sudo ip link set slcan1 down
+
+#kill slcand
+sudo killall slcand
+
+#start slcand
+#sudo slcand -o -c -s6 -t hw -S $1 /dev/ttyUSB0
+sudo slcand -o -c -s6 -t hw -S $1 /dev/ttyUSB1
+
+sleep 1
+
+#bring up interfaces
+sudo ip link set slcan0 up
+#sudo ip link set slcan1 up

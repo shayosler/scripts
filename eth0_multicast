@@ -1,0 +1,13 @@
+#!/bin/bash
+#Setup script for LCM over eth0
+
+echo Setting up enp0s31f6 for multicast
+#ifconfig eth0 multicast
+ip link set dev enp0s31f6 multicast on
+
+echo Setting multicast route
+#route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
+ip route del 224.0.0.0/4 &> /dev/null
+ip route add 224.0.0.0/4 dev enp0s31f6
+
+echo DONE
