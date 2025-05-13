@@ -9,19 +9,19 @@ int_stock_goal_pct = 0.3
 bnd_goal_pct = 0.1
 
 # Get totals in brokerage account
-brk_bnd = input('BND in brokerage: ')
-brk_vclt = input('VCLT in brokerage: ')
-brk_voo = input('VOO in brokerage: ')
-brk_vti = input('VTI in brokerage: ')
-brk_vxus = input('VXUS in brokerage: ')
-brk_cash = input('Cash in brokerage: ')
+brk_bnd = float(input('BND in brokerage: '))
+brk_vclt = float(input('VCLT in brokerage: '))
+brk_voo = float(input('VOO in brokerage: '))
+brk_vti = float(input('VTI in brokerage: '))
+brk_vxus = float(input('VXUS in brokerage: '))
+brk_cash = float(input('Cash in brokerage: '))
 # Get totals in Roth IRA
-roth_bnd = input('BND in Roth IRA: ')
-roth_vclt = 0  # input('VCLT in Roth IRA: ')
-roth_voo = input('VOO in Roth IRA: ')
-roth_vti = input('VTI in Roth IRA: ')
-roth_vxus = input('VXUS in Roth IRA: ')
-roth_cash = input('Cash in Roth IRA: ')
+roth_bnd = float(input('BND in Roth IRA: '))
+roth_vclt = 0  # float(input('VCLT in Roth IRA: ')
+roth_voo = float(input('VOO in Roth IRA: '))
+roth_vti = float(input('VTI in Roth IRA: '))
+roth_vxus = float(input('VXUS in Roth IRA: '))
+roth_cash = float(input('Cash in Roth IRA: '))
 
 # Calculate totals
 bnd_tot = brk_vclt + brk_bnd + roth_vclt + roth_bnd
