@@ -1,0 +1,39 @@
+[user]
+  name = Shay Osler
+  email = sosler@greensea.com
+
+[diff]
+  tool = meld
+
+[difftool]
+  prompt = false
+
+[difftool "meld"]
+  cmd = meld "$REMOTE" "$LOCAL"
+
+[merge]
+  tool = meld
+
+[push]
+  default = simple
+[gc]
+  auto = 1
+[alias]
+  st = status
+  co = checkout
+  ci = commit
+  br = branch
+  up = "!git remote update -p; git merge --ff-only @{u}"
+  tree = log --oneline --graph --color --all --decorate
+
+#[safe]
+# directory = *
+[pull]
+	rebase = false
+[safe]
+	directory = /opt/greensea
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
