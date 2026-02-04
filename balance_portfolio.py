@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Investment targets:
 # 90% stocks
 #   30% international (VXUS)
@@ -8,27 +8,36 @@ dom_stock_goal_pct = 0.6
 int_stock_goal_pct = 0.3
 bnd_goal_pct = 0.1
 
-# Get totals in brokerage account
-brk_bnd = float(input('BND in brokerage: '))
-brk_vclt = float(input('VCLT in brokerage: '))
-brk_voo = float(input('VOO in brokerage: '))
-brk_vti = float(input('VTI in brokerage: '))
-brk_vxus = float(input('VXUS in brokerage: '))
-brk_cash = float(input('Cash in brokerage: '))
-# Get totals in Roth IRA
-roth_bnd = float(input('BND in Roth IRA: '))
-roth_vclt = 0  # float(input('VCLT in Roth IRA: ')
-roth_voo = float(input('VOO in Roth IRA: '))
-roth_vti = float(input('VTI in Roth IRA: '))
-roth_vxus = float(input('VXUS in Roth IRA: '))
-roth_cash = float(input('Cash in Roth IRA: '))
+accts = ["brokerage", "trad IRA", "Roth IRA",  "joint"]
+dom = ["VTI", "VOO"]     # domestic stocks
+intl = ["VXUS"]          # international stocks
+bond = ["BND", "VCLT"]   # bonds
+cash  = ["CASH"]         # cash
+
+# Get holdings in each account
+dom_total = 0
+intl_total = 0
+bond_total = 0
+cash_total = 0
+for acct in accts:
+    bnd = float(input(f'BND in {acct}: '))
+    if acct == "brokerage":
+        vclt = float(input(f'VCLT in {acct}: '))
+    if acct == "brokerage" or "Roth IRA":
+        voo = float(input(f'VOO in {acct}: '))
+    vti = float(input(f'VTI in {acct}: '))
+    vxus = float(input(f'VXUS in {acct}: '))
+    cash = float(input(f'Cash in {acct}: '))
+
+    # Update totals
+    dom_total = dom_total + voo + vti
+    intl_total = intl_total + vxus
+    bond_total = bond_total + bnd + vclt
+    cash_total = cash_total + cash
+
 
 # Calculate totals
-bnd_tot = brk_vclt + brk_bnd + roth_vclt + roth_bnd
-dom_stock_tot = brk_voo + brk_vti + roth_vti + roth_voo
-int_stock_tot = brk_vxus + roth_vxus
-cash_tot = brk_cash + roth_cash
-total_value = bnd_tot + dom_stock_tot + int_stock_tot + cash_tot
+total_value = bond_total + dom_total + intl_total + cash_total
 
 # Calculate goal totals
 dom_stock_goal = dom_stock_goal_pct * total_value
@@ -36,24 +45,24 @@ int_stock_goal = int_stock_goal_pct * total_value
 bnd_goal = bnd_goal_pct * total_value
 
 # Difference between goal and current value
-dom_stock_diff = dom_stock_goal - dom_stock_tot
-int_stock_diff = int_stock_goal - int_stock_tot
-bnd_diff = bnd_goal - bnd_tot
+dom_stock_diff = dom_stock_goal - dom_total
+int_stock_diff = int_stock_goal - intl_total
+bnd_diff = bnd_goal - bond_total
 
 # Print out info
 print('Total Holdings: $' + str(total_value))
 print('Domestic stocks (VTI, VOO): $' +
-      str(dom_stock_tot) + ' (' +
-      str(dom_stock_tot * 100 / total_value) + '%)')
+      str(dom_total) + ' (' +
+      str(dom_total * 100 / total_value) + '%)')
 print('International stocks (VXUS): $' +
-      str(int_stock_tot) +
-      ' (' + str(int_stock_tot * 100 / total_value) + '%)')
-print('Bonds (BND): $' +
-      str(bnd_tot) + ' (' +
-      str(bnd_tot * 100 / total_value) + '%)')
+      str(intl_total) +
+      ' (' + str(intl_total * 100 / total_value) + '%)')
+print('Bonds (BND, VCLT): $' +
+      str(bond_total) + ' (' +
+      str(bond_total * 100 / total_value) + '%)')
 print('Cash: $' +
-      str(cash_tot) + ' (' +
-      str(cash_tot * 100 / total_value) + '%)')
+      str(cash_total) + ' (' +
+      str(cash_total * 100 / total_value) + '%)')
 print('Current targets: ')
 print(str(dom_stock_goal_pct * 100) + ' % Domestic stock')
 print(str(int_stock_goal_pct * 100) + ' % International stock')
@@ -62,4 +71,3 @@ print('Target - current:')
 print('  Domestic stocks: $' + str(dom_stock_diff))
 print('  International stocks: $' + str(int_stock_diff))
 print('  Bonds: $' + str(bnd_diff))
-
